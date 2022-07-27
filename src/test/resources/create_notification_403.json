@@ -1,0 +1,4 @@
+{
+  "error": "unauthorized",
+  "message": "User system doesn't have permission to create notifications in project test"
+}
