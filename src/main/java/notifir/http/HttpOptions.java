@@ -10,7 +10,6 @@ public class HttpOptions {
 
   private int connectTimeout = 10;
   private int readTimeout = 10;
-  private int mgmtApiMaxRetries = 3;
   private int maxRequests = 64;
   private int maxRequestsPerHost = 5;
   private LoggingOptions loggingOptions;

@@ -71,7 +71,7 @@ public class Notifir {
    * i.e.:
    * <pre>
    * {@code
-   * NotifirAPI notifir = new NotifirAPI("https://localhost:3000/api", "114ee1da-067b-11ed-be0f-6f24634ae754", "114ee1da-067b-11ed-be0f-6f24634ae755");
+   * Notifir notifir = new Notifir("https://localhost:3000/api", "114ee1da-067b-11ed-be0f-6f24634ae754", "114ee1da-067b-11ed-be0f-6f24634ae755");
    * try {
    *      NotificationRequest notification = new NotificationRequest();
    *      NotificationResponse result = notifir.createNotification(notification).execute();
