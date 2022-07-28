@@ -4,16 +4,19 @@
  * This is a general purpose Gradle build.
  * Learn more about Gradle by exploring our samples at https://docs.gradle.org/7.5/samples
  */
-apply plugin: 'java'
 
-repositories { 
+plugins {
+  id 'java'
+  id 'maven-publish'
+  id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
+}
+
+repositories {
   mavenCentral()
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-group = 'notifir'
 
 ext {
   okhttpVersion = '4.10.0'
@@ -38,4 +41,31 @@ dependencies {
   testImplementation "org.hamcrest:hamcrest-core:${hamcrestVersion}"
   testImplementation "org.hamcrest:hamcrest-library:${hamcrestVersion}"
   testImplementation "junit:junit:4.13.2"
+}
+
+publishing {
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/notifir/notifir-java")
+      credentials {
+        username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+        password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+      }
+    }
+  }
+  publications {
+    maven(MavenPublication) {
+      groupId = 'io.github.notifir'
+      artifactId = 'notifir'
+
+      from components.java
+    }
+  }
+}
+
+jgitver {
+  strategy 'MAVEN'
+  nonQualifierBranches 'main'
+  useDirty true
 }
