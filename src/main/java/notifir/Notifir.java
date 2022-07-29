@@ -3,6 +3,7 @@ package notifir;
 import static notifir.hmac.Hmac.calculateHMAC;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import lombok.SneakyThrows;
 import notifir.http.CustomRequest;
 import notifir.http.HttpOptions;
 import notifir.http.LoggingOptions;
@@ -84,8 +85,8 @@ public class Notifir {
    * @param notification notification
    * @return a Request to execute.
    */
-  public Request<NotificationResponse> createNotification(NotificationRequest notification) throws NoSuchAlgorithmException,
-      InvalidKeyException {
+  @SneakyThrows
+  public Request<NotificationResponse> createNotification(NotificationRequest notification) {
     Validate.notNull(notification, "The notification must not be null");
 
     String url = baseUrl

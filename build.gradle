@@ -9,14 +9,21 @@ plugins {
   id 'java'
   id 'maven-publish'
   id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
+  id 'signing'
 }
 
 repositories {
   mavenCentral()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
+
+jgitver {
+  strategy 'MAVEN'
+  nonQualifierBranches 'main'
+  useDirty true
+}
 
 ext {
   okhttpVersion = '4.10.0'
@@ -43,29 +50,70 @@ dependencies {
   testImplementation "junit:junit:4.13.2"
 }
 
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+  archiveClassifier.set("sources")
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
 publishing {
   repositories {
     maven {
-      name = "GitHubPackages"
-      url = uri("https://maven.pkg.github.com/notifir/notifir-java")
+      name = "OSSRH"
+      if (project.hasProperty("release")) {
+        url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+      } else {
+        url 'https://s01.oss.sonatype.org/content/repositories/snapshots'
+      }
       credentials {
-        username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-        password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+        username = System.getenv("OSSRH_USERNAME")
+        password = System.getenv("OSSRH_TOKEN")
       }
     }
   }
+
   publications {
     maven(MavenPublication) {
-      groupId = 'io.github.notifir'
-      artifactId = 'notifir'
+      groupId = "io.github.notifir"
+      artifactId = "notifir"
 
-      from components.java
+      pom {
+        name = "notifir"
+        description = "Java client library for Notifir"
+        url = "https://github.com/notifir/notifir-java"
+        licenses {
+          license {
+            name = 'MIT License'
+            url = 'http://www.opensource.org/licenses/mit-license.php'
+          }
+        }
+        developers {
+          developer {
+            id = "titenkov"
+            name = "Pavel Titenkov"
+            email = "pavel@titenkov.com"
+          }
+          developer {
+            id = "katyaterletskaya"
+            name = "Katya Kuzmenchuk"
+            email = "kuzmenchukkatya@gmail.com"
+          }
+        }
+        scm {
+          connection = "scm:git:https://github.com/notifir/notifir-java.git"
+          developerConnection = "scm:git:https://github.com/notifir/notifir-java.git"
+          url = "https://github.com/notifir/notifir-java"
+        }
+      }
     }
   }
 }
 
-jgitver {
-  strategy 'MAVEN'
-  nonQualifierBranches 'main'
-  useDirty true
+signing {
+  useGpgCmd()
+  sign publishing.publications.maven
 }
