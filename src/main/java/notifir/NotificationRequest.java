@@ -11,5 +11,6 @@ public class NotificationRequest {
   String type;
   String projectId;
   String userId;
+  String actionUrl;
   Map<String, Object> payload;
 }
