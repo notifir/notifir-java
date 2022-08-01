@@ -37,6 +37,11 @@ jobs:
       - name: Test
         run: ./gradlew test
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: ./build/reports/jacoco/test/jacocoTestReport.xml
+
       - name: Build
         run: ./gradlew build
 

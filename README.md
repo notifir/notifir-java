@@ -1,6 +1,10 @@
 # Notifir Java
 
 [![MIT][mit-badge]][mit-url]
+[![Maven][maven-badge]][maven-url]
+[![codecov][codecov-badge]][codecov-url]
+[![Publish Stable][publish-stable-badge]][publish-stable-url]
+[![Publish Unstable][publish-unstable-badge]][publish-unstable-url]
 
 Java client library for the [Notifir](https://notifir.github.io/docs/).
 
@@ -12,14 +16,14 @@ Get Notifir Java via Maven:
 <dependency>
   <groupId>io.github.notifir</groupId>
   <artifactId>notifir</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
 </dependency>
 ```
 
 or Gradle:
 
 ```gradle
-implementation 'io.github.notifir:notifir:0.2.0'
+implementation 'io.github.notifir:notifir:0.3.0'
 ```
 
 ## Usage
@@ -100,5 +104,11 @@ This project is licensed under the MIT license. See the [LICENSE](LICENSE) file 
 
 [mit-badge]: http://img.shields.io/:license-mit-blue.svg?style=flat
 [mit-url]: https://raw.githubusercontent.com/notifir/notifir-java/main/LICENSE
-
-
+[publish-stable-badge]: https://github.com/notifir/notifir-java/actions/workflows/publish-stable.yml/badge.svg
+[publish-stable-url]: https://github.com/notifir/notifir-java/actions/workflows/publish-stable.yml
+[publish-unstable-badge]: https://github.com/notifir/notifir-java/actions/workflows/publish-unstable.yml/badge.svg
+[publish-unstable-url]: https://github.com/notifir/notifir-java/actions/workflows/publish-unstable.yml
+[maven-badge]: https://img.shields.io/maven-central/v/io.github.notifir/notifir.svg
+[maven-url]: http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22io.github.notifir%22%20AND%20a%3A%22notifir%22
+[codecov-badge]: https://codecov.io/gh/notifir/notifir-java/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/notifir/notifir-java

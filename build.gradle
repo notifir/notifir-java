@@ -11,6 +11,7 @@ plugins {
   id 'maven-publish'
   id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
   id 'signing'
+  id 'jacoco'
 }
 
 repositories {
@@ -139,4 +140,14 @@ publishing {
 signing {
   useGpgCmd()
   sign publishing.publications.maven
+}
+
+tasks.test {
+  finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+  reports {
+    xml.required.set(true)
+  }
 }
