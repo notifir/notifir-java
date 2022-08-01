@@ -51,13 +51,18 @@ dependencies {
 }
 
 task sourceJar(type: Jar) {
+  description 'Packages up the source in a Jar for Maven publishing'
   from sourceSets.main.allJava
-  archiveClassifier.set("sources")
+  from sourceSets.main.resources
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
+  description 'Packages up the javadoc in a Jar for Maven publishing'
   from javadoc.destinationDir
+}
+
+artifacts {
+  archives sourceJar, javadocJar
 }
 
 publishing {
@@ -80,6 +85,16 @@ publishing {
     maven(MavenPublication) {
       groupId = "io.github.notifir"
       artifactId = "notifir"
+
+      from components.java
+
+      artifact sourceJar {
+        classifier "sources"
+      }
+
+      artifact javadocJar {
+        classifier "javadoc"
+      }
 
       pom {
         name = "notifir"
