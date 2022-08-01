@@ -82,7 +82,18 @@ try {
 }
 ```
 
+## Documentation
 
+For more information about [Notifir](https://github.com/notifir) check our [documentation page](https://notifir.github.io/docs/).
+
+## What is Notifir?
+
+Notifir is created to simplify the development of in-app notifications for your product. It provides the skeleton of the notification 
+system. The essential functionality is available out of the box.
+
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
 
 
 <!-- Vars -->

@@ -31,6 +31,9 @@ jobs:
       - name: List GPG Keys
         run: gpg --list-secret-keys --keyid-format LONG
 
+      - name: Print version
+        run: ./gradlew version
+
       - name: Test
         run: ./gradlew test
 
