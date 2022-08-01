@@ -7,6 +7,7 @@
 
 plugins {
   id 'java'
+  id 'java-library'
   id 'maven-publish'
   id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
   id 'signing'
@@ -50,6 +51,12 @@ dependencies {
   testImplementation "junit:junit:4.13.2"
 }
 
+jar {
+  manifest {
+    attributes('Implementation-Title': 'notifir')
+  }
+}
+
 task sourceJar(type: Jar) {
   description 'Packages up the source in a Jar for Maven publishing'
   from sourceSets.main.allJava
@@ -62,7 +69,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 artifacts {
-  archives sourceJar, javadocJar
+  archives jar, sourceJar, javadocJar
 }
 
 publishing {
@@ -86,7 +93,7 @@ publishing {
       groupId = "io.github.notifir"
       artifactId = "notifir"
 
-      from components.java
+      artifact jar
 
       artifact sourceJar {
         classifier "sources"
@@ -100,6 +107,7 @@ publishing {
         name = "notifir"
         description = "Java client library for Notifir"
         url = "https://github.com/notifir/notifir-java"
+        packaging = 'jar'
         licenses {
           license {
             name = 'MIT License'
