@@ -37,7 +37,6 @@ public class NotifirTest {
   NotificationRequest testNotification = NotificationRequest
       .builder()
       .type("test")
-      .projectId("default")
       .recipients(Set.of("user@test.com"))
       .payload(new HashMap<>())
       .build();
@@ -146,7 +145,6 @@ public class NotifirTest {
     NotificationRequest notification = NotificationRequest
         .builder()
         .type("test")
-        .projectId("test")
         .recipients(Set.of("user@test.com"))
         .payload(new HashMap<>())
         .build();

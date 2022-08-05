@@ -11,7 +11,6 @@ import java.util.Set;
 @Builder(toBuilder = true)
 public class NotificationRequest implements Serializable {
   String type;
-  String projectId;
   String actionUrl;
   Set<String> recipients;
   Map<String, Object> payload;
