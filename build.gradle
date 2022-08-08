@@ -9,9 +9,10 @@ plugins {
   id 'java'
   id 'java-library'
   id 'maven-publish'
-  id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
   id 'signing'
   id 'jacoco'
+  id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
+  id 'io.codearte.nexus-staging' version '0.30.0'
 }
 
 repositories {
@@ -87,6 +88,14 @@ publishing {
         password = System.getenv("OSSRH_TOKEN")
       }
     }
+    maven {
+      name = "GitHubPackages"
+      url = "https://maven.pkg.github.com/notifir/notifir-java"
+      credentials {
+        username = System.getenv("GITHUB_ACTOR")
+        password = System.getenv("GITHUB_TOKEN")
+      }
+    }
   }
 
   publications {
@@ -140,6 +149,13 @@ publishing {
 signing {
   useGpgCmd()
   sign publishing.publications.maven
+}
+
+nexusStaging {
+  serverUrl = "https://s01.oss.sonatype.org/service/local/"
+  packageGroup = "io.github.notifir"
+  username = System.getenv('OSSRH_USERNAME')
+  password = System.getenv('OSSRH_TOKEN')
 }
 
 tasks.test {

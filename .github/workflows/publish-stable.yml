@@ -31,15 +31,21 @@ jobs:
       - name: Print version
         run: ./gradlew version
 
-      - name: Test
-        run: ./gradlew test
-
       - name: Build
         run: ./gradlew build
 
+      - name: Test
+        run: ./gradlew test
+
       - name: Publish
-        run: ./gradlew publish -Prelease -Psigning.gnupg.keyName=${{ secrets.OSSRH_GPG_SECRET_KEY_ID }}
-          -Psigning.gnupg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+        run: ./gradlew -Prelease -Psigning.gnupg.keyName=${{ secrets.OSSRH_GPG_SECRET_KEY_ID }} -Psigning.gnupg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} publish
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Repository in OSSRH
+        run: ./gradlew closeAndReleaseRepository
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}

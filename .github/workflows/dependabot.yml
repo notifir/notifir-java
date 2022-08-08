@@ -23,6 +23,12 @@ jobs:
           java-version: 11
           cache: 'gradle'
 
+      - name: Build
+        run: ./gradlew build
+
+      - name: Test
+        run: ./gradlew test
+
   automerge:
     needs: check-pr
     runs-on: ubuntu-latest
