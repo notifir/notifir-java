@@ -44,8 +44,44 @@ jobs:
           OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release Repository in OSSRH
+      - name: Release in OSSRH
         run: ./gradlew closeAndReleaseRepository
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_TOKEN: ${{ secrets.OSSRH_TOKEN }}
+
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v3.0.0
+        with:
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Java client library for the [Notifir](https://notifir.github.io/docs/).
+
+            Grab the new version from Maven central https://repo1.maven.org/maven2/io/github/notifir/notifir/${{ github.ref }}/:
+
+            ```
+            <dependency>
+              <groupId>io.github.notifir</groupId>
+              <artifactId>notifir</artifactId>
+              <version>${{ github.ref }}</version>
+            </dependency>
+            ```
+
+            ```
+            implementation 'io.github.notifir:notifir:${{ github.ref }}'
+            ```
+
+            ### Things that changed in this release
+            ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
