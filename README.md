@@ -16,14 +16,14 @@ Get Notifir Java via Maven:
 <dependency>
   <groupId>io.github.notifir</groupId>
   <artifactId>notifir</artifactId>
-  <version>0.3.0</version>
+  <version>0.5.6</version>
 </dependency>
 ```
 
 or Gradle:
 
 ```gradle
-implementation 'io.github.notifir:notifir:0.3.0'
+implementation 'io.github.notifir:notifir:0.5.6'
 ```
 
 ## Usage

@@ -62,23 +62,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
           body: |
             Java client library for the [Notifir](https://notifir.github.io/docs/).
 
-            Grab the new version from Maven central https://repo1.maven.org/maven2/io/github/notifir/notifir/${{ github.ref }}/:
+            Grab the new version from Maven central https://repo1.maven.org/maven2/io/github/notifir/notifir/${{ github.ref_name }}/:
 
             ```
             <dependency>
               <groupId>io.github.notifir</groupId>
               <artifactId>notifir</artifactId>
-              <version>${{ github.ref }}</version>
+              <version>${{ github.ref_name }}</version>
             </dependency>
             ```
 
+            Or using Gradle:
+
             ```
-            implementation 'io.github.notifir:notifir:${{ github.ref }}'
+            implementation 'io.github.notifir:notifir:${{ github.ref_name }}'
             ```
 
             ### Things that changed in this release
