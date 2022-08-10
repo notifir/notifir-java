@@ -32,7 +32,7 @@ implementation 'io.github.notifir:notifir:0.5.6'
 
 The implementation is based on the [Notifir API](https://notifir.github.io/docs/).
 
-Create an `Notifir` instance by providing the required details, such as `baseUrl`, `apiPublicKey` and `apiSecretKey`.
+Create a `Notifir` instance by providing the required details, such as `baseUrl`, `apiPublicKey` and `apiSecretKey`.
 
 ```java
 Notifir auth = new Notifir(
