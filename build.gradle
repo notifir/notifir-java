@@ -30,7 +30,7 @@ jgitver {
 
 ext {
   okhttpVersion = '4.10.0'
-  jacksonVersion = '2.14.1'
+  jacksonVersion = '2.14.2'
   hamcrestVersion = '2.2'
 }
 
