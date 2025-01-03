@@ -51,7 +51,7 @@ dependencies {
   testCompileOnly 'org.projectlombok:lombok:1.18.36'
   testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 
-  testImplementation "org.mockito:mockito-core:5.14.2"
+  testImplementation "org.mockito:mockito-core:5.15.2"
   testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
   testImplementation "org.hamcrest:hamcrest-core:${hamcrestVersion}"
   testImplementation "org.hamcrest:hamcrest-library:${hamcrestVersion}"
