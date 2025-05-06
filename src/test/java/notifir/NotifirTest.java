@@ -20,7 +20,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.HashMap;
-import java.util.Set;
 
 
 public class NotifirTest {
@@ -37,7 +36,7 @@ public class NotifirTest {
   NotificationRequest testNotification = NotificationRequest
       .builder()
       .type("test")
-      .recipients(Set.of("user@test.com"))
+      .recipient("user@test.com")
       .payload(new HashMap<>())
       .build();
 
@@ -145,7 +144,7 @@ public class NotifirTest {
     NotificationRequest notification = NotificationRequest
         .builder()
         .type("test")
-        .recipients(Set.of("user@test.com"))
+        .recipient("user@test.com")
         .payload(new HashMap<>())
         .build();
 
