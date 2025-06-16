@@ -35,7 +35,7 @@ buildScan {
 
 ext {
   okhttpVersion = '4.12.0'
-  jacksonVersion = '2.19.0'
+  jacksonVersion = '2.19.1'
   hamcrestVersion = '3.0'
 }
 
