@@ -43,7 +43,7 @@ dependencies {
   implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
   implementation "com.squareup.okhttp3:logging-interceptor:${okhttpVersion}"
   implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-  implementation "org.apache.commons:commons-lang3:3.17.0"
+  implementation "org.apache.commons:commons-lang3:3.18.0"
 
   compileOnly 'org.projectlombok:lombok:1.18.38'
   annotationProcessor 'org.projectlombok:lombok:1.18.38'
